@@ -4,6 +4,8 @@ import express from "express";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import helmet from "helmet";
+import mongoSanitize from "express-mongo-sanitize";
 
 import cloudinary from "cloudinary";
 
@@ -34,8 +36,10 @@ if (process.env.NODE_ENV === "development") {
 }
 app.use(cookieParser());
 app.use(express.json());
+app.use(helmet());
+app.use(mongoSanitize());
 
-app.use(express.static(path.resolve(__dirname, "./public")));
+app.use(express.static(path.resolve(__dirname, "./Client/dist")));
 
 app.get("/api", (req, res) => {
   res.json({
@@ -47,8 +51,12 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", authenticateUser, userRouter);
 app.use("/api/v1/jobs", authenticateUser, jobRouter);
 
-app.use(/.*/, (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./public", "index.html"));
+// app.use(/.*/, (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "./Client/dist", "index.html"));
+// });
+
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
 });
 
 app.use(/.*/, (req, res) => {

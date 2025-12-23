@@ -1,52 +1,36 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import Wrapper from "../assets/wrappers/LandingPage";
 import { Link } from "react-router";
 import Logo from "../components/Logo";
 import beautyimg from "../assets/images/makeup_landing.svg";
 
 const Landing = () => {
-  // const focus = () => {
-  //   document.getElementById("bt")?.style &&
-  //     (document.getElementById("bt").style.backgroundColor = "red");
-
-  //   document.getElementById("con")?.style &&
-  //     (document.getElementById("con").style.animationPlayState = "paused");
-  // };
-
-  // const focusOver = () => {
-  //   document.getElementById("bt")?.style &&
-  //     (document.getElementById("bt").style.backgroundColor = "lightpink");
-  //   document.getElementById("con")?.style &&
-  //     (document.getElementById("con").style.animationPlayState = "running");
-  // };
-
   return (
     <Wrapper>
       <nav>
         <Logo />
-        {/* <LogoImage src={logo} /> */}
-        {/* <img src={logo} alt="jobify" className="logo" />; */}
       </nav>
 
       <div className="container page">
         <div className="info">
           <h1>
-            Luxury <span>Saloon</span> in Your Area
+            Get <span>Job</span> with Jobs by Vips
           </h1>
+
+          <Link to="/register" className="btn register-link">
+            Register
+          </Link>
+          <Link to="/login" className="btn ">
+            Login / Demo User
+          </Link>
         </div>
+
+        <img src={beautyimg} alt="job hunt" className="img main-img" />
+
+        <Title>You are welcome in VIPS World!</Title>
       </div>
 
-      <img src={beautyimg} alt="job hunt" className="img main-img" />
-
-      <Link to="/register" className="btn register-link">
-        Register
-      </Link>
-      <Link to="/login" className="btn ">
-        Login / Demo User
-      </Link>
-
-      <Title>You are welcome in VIPS World!</Title>
-      <Rotate id="con">
+      {/* <Rotate id="con">
         <Button
           id="bt"
           onFocus={focus}
@@ -55,7 +39,7 @@ const Landing = () => {
         >
           Press Me!
         </Button>
-      </Rotate>
+      </Rotate> */}
     </Wrapper>
   );
 };
@@ -74,38 +58,38 @@ const Title = styled.h1`
 // `;
 
 // Create the keyframes
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
+// const rotate = keyframes`
+//   from {
+//     transform: rotate(0deg);
+//   }
 
-  to {
-    transform: rotate(360deg);
-  }
-`;
+//   to {
+//     transform: rotate(360deg);
+//   }
+// `;
 
-const Button = styled.button`
-  font-size: 1.5rem;
-  background-color: lightpink;
-  color: white;
-  /* 
-  div:hover {
-    transform: scaleX(5);
-    transition: all 5s;
-    animation-play-state: paused;
-  } */
-`;
+// const Button = styled.button`
+//   font-size: 1.5rem;
+//   background-color: lightpink;
+//   color: white;
+
+//   div:hover {
+//     transform: scaleX(5);
+//     transition: all 5s;
+//     animation-play-state: paused;
+//   }
+// `;
 
 // Here we create a component that will rotate everything we pass in over two seconds
-const Rotate = styled.div`
-  display: inline-block;
-  animation: ${rotate} 4s linear infinite;
-  padding: 2rem 1rem;
-  font-size: 1.2rem;
-  Button:hover {
-    transform: scale(1.5);
-    animation-play-state: paused;
+// const Rotate = styled.div`
+//   display: inline-block;
+//   animation: ${rotate} 4s linear infinite;
+//   padding: 2rem 1rem;
+//   font-size: 1.2rem;
+//   Button:hover {
+//     transform: scale(1.5);
+//     animation-play-state: paused;
 
-    /* animation: ${rotate} 0s linear infinite; */
-  }
-`;
+//     animation: ${rotate} 0s linear infinite;
+//   }
+// `;

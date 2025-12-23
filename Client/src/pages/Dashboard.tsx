@@ -4,11 +4,17 @@ import NavBar from "../components/NavBar";
 import Wrapper from "../assets/wrappers/DashboardPage";
 import { useContext, createContext, useState } from "react";
 import { checkDefaultTheme } from "../main";
-import { useNavigate } from "react-router-dom";
+import {
+  useNavigate,
+  useNavigation,
+  Outlet,
+  redirect,
+  useLoaderData,
+} from "react-router-dom";
 
-import { Outlet, redirect, useLoaderData } from "react-router-dom";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
+import Loading from "../components/Loading";
 
 export const loader = async () => {
   try {
@@ -49,6 +55,9 @@ const DashboardContext = createContext<CurrentUserContextType>(
 const Dashboard = () => {
   const user = useLoaderData();
   const navigate = useNavigate();
+
+  const navigation = useNavigation();
+  const isPageLoading = navigation.state === "loading";
 
   console.log("user Dashboard", user);
 
@@ -92,7 +101,7 @@ const Dashboard = () => {
           <div>
             <NavBar />
             <div className="dashboard-page">
-              <Outlet context={{ user }} />
+              {isPageLoading ? <Loading /> : <Outlet context={{ user }} />}
             </div>
           </div>
         </main>
