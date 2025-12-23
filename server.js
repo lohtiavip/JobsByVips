@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
-app.use(mongoSanitize());
+// app.use(mongoSanitize());
 
 app.use(express.static(path.resolve(__dirname, "./Client/dist")));
 
@@ -56,7 +56,7 @@ app.use("/api/v1/jobs", authenticateUser, jobRouter);
 // });
 
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
+  res.sendFile(path.resolve(__dirname, "./Client/dist", "index.html"));
 });
 
 app.use(/.*/, (req, res) => {
